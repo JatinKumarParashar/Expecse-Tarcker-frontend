@@ -13,7 +13,7 @@ function login(event) {
             console.log('login routes is working well')
             alert('Login successfully')
         }).catch(err => {
-            if (err.response.status == 501) {
+            if (err.response.status == 401) {
                 alert('your password is not correct')
             }
             else {
