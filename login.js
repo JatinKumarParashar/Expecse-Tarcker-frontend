@@ -12,6 +12,7 @@ function login(event) {
         .then(result => {
             console.log('login routes is working well')
             alert('Login successfully')
+            window.location.href=`C:/Users/jaykp/Desktop/Expense_Tracker_FrontEnd/Expence_tracker2.htm`;
         }).catch(err => {
             if (err.response.status == 401) {
                 alert('your password is not correct')

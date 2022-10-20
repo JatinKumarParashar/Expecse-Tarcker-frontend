@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<title>Expence Trackers</title>
+
+<body>
+    <form onsubmit="save(event)" id="form">
+        <label>Expance Amount:</label>
+        <input type="text" id="amount">
+        <label>Description:</label>
+        <input type="text" id="description">
+        <label>Category:</label>
+        <input list="categorys" id="category">
+        <datalist id="categorys">
+            <option value="Food">
+            <option value="Fuel">
+            <option value="Movies">
+            <option value="Bill">
+        </datalist>
+        <button type="submit" id="submit">Add Expense</button>
+
+    </form>
+    <ul id="list">
+
+    </ul>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+    <script src="expense.js">
+       
+    </script>
+</body>
+
+</html>
