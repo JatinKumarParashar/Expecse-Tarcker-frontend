@@ -1,8 +1,5 @@
 
 
-
-
-
 function save(event) {
     event.preventDefault();
     let amm = document.getElementById('amount').value;
@@ -13,7 +10,8 @@ function save(event) {
         des,
         cat
     }
-    axios.post('http://localhost:4000/expense/add-expense', obj)
+    const token=localStorage.getItem('token');
+    axios.post('http://localhost:4000/expense/add-expense', obj,{headers:{'Authorization':token}})
         .then((response) => {
 
             seeOnScreen(response.data);
@@ -23,7 +21,8 @@ function save(event) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    var g = axios.get('http://localhost:4000/expense/get-expense')
+    const token=localStorage.getItem('token')
+    var g = axios.get('http://localhost:4000/expense/get-expense',{headers:{ 'Authorization':token}})
         .then((response) => {
 
             console.log(response)
@@ -60,11 +59,11 @@ function remove(id) {
 }
 
 function edit(amm, des, cat, id) {
-    remove(id);
     document.getElementById('amount').value = amm;
     document.getElementById('description').value = des;
     document.getElementById('category').value = cat;
-    axios.post(`http://localhost:4000/expense/edit/${id}`)
+    remove(id);
+   // axios.post(`http://localhost:4000/expense/edit/${id}`)
 
 }
 

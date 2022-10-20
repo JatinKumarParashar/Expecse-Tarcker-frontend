@@ -12,7 +12,7 @@ function signUp(event){
     axios.post('http://localhost:4000/user/signup',obj).then((result) => {
         console.log(result);
         console.log('routes is working well')
-        window.location.href="C:/Users/jaykp/Desktop/Expense_Tracker_FrontEnd/Expence_tracker2.htm"
+        window.location.href="C:/Users/jaykp/Desktop/Expense_Tracker_FrontEnd/login.html"
         
     }).catch((err) => {
         console.log(err);
