@@ -12,10 +12,19 @@ function login(event) {
         .then(result => {
             console.log('login routes is working well')
             alert('Login successfully')
-            console.log('response from post login >>>>>',result.data)
-            localStorage.setItem('token',result.data.token);
-           window.location.href=`C:/Users/jaykp/Desktop/Expense_Tracker_FrontEnd/Expence_tracker2.htm`;
+            console.log('response from post login >>>>>', result.data.result[0].ispremiumuser)
+            localStorage.setItem('token', result.data.token);
+            //console.log('login status>>>', result.response.status);
+            if (result.data.result[0].ispremiumuser) {
+                window.location.href='C:/Users/jaykp/Desktop/Expense_Tracker_FrontEnd/premium.html'
+            }
+            else {
+                window.location.href = `C:/Users/jaykp/Desktop/Expense_Tracker_FrontEnd/Expence_tracker2.htm`;
+                
+                //window.location.href = 'http://www.google.com'
+            }
         }).catch(err => {
+            //console.log(err);
             if (err.response.status == 401) {
                 alert('your password is not correct')
             }
@@ -25,3 +34,9 @@ function login(event) {
             console.log(err);
         })
 }
+
+document.addEventListener('click',(e)=>{
+    if(e.target.className='forget-password'){
+        window.location.href='C:/Users/jaykp/Desktop/Expense_Tracker_FrontEnd/forget-password.html'
+    }
+})
