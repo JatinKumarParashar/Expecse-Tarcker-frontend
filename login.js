@@ -35,8 +35,11 @@ function login(event) {
         })
 }
 
-document.addEventListener('click',(e)=>{
-    if(e.target.className='forget-password'){
-        window.location.href='C:/Users/jaykp/Desktop/Expense_Tracker_FrontEnd/forget-password.html'
+const forgetpasswrord=document.getElementById('forget-password')
+
+forgetpasswrord.addEventListener('click',(e)=>{
+     console.log(e.target.id)
+    if(e.target.id='forget-password'){
+       window.location.href='C:/Users/jaykp/Desktop/Expense_Tracker_FrontEnd/forget-password.html'
     }
 })
