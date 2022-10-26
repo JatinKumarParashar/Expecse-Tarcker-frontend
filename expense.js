@@ -22,18 +22,21 @@ function save(event) {
 
 window.addEventListener('DOMContentLoaded', () => {
     const token=localStorage.getItem('token')
-    var g = axios.get('http://localhost:4000/expense/get-expense',{headers:{ 'Authorization':token}})
+    const objUrlParams = new URLSearchParams(window.location.search);
+    const page = objUrlParams.get('page') || 1;
+    console.log('checking page',page);
+    var g = axios.get(`http://localhost:4000/expense/get-expense?page=${page}`,{headers:{ 'Authorization':token}})
         .then((response) => {
 
-            console.log('getresponse',response);
-            for (let i = 0; i < response.data.length; i++) {
+            console.log('getresponse',response.data);
+            for (let i = 0; i < response.data.expense.length; i++) {
 
                 console.log(response)
-                seeOnScreen(response.data[i]);
+                seeOnScreen(response.data.expense[i]);
             }
-            
+            showPagination(response.data);
         }).catch(() => {
-            console.log('somthing went wrong in get');
+            console.log('somthing went wrong in get,loading');
         })
 
 });
@@ -129,4 +132,66 @@ document.getElementById('downloadexpense').onclick=async function(e){
    const response= axios.get('http://localhost:4000/user/download', { headers: {"Authorization" : token} })
         console.log(response);
   
+}
+
+parentNode=document.getElementById('list');
+
+const pagination = document.querySelector('.pagination');
+
+function showPagination({
+    currentPage,
+    hasNextPage,
+    nextPage,
+    hasPreviousPage,
+    previousPage,
+    lastPage
+}) {
+    pagination.innerHTML = "";
+
+    if (hasPreviousPage) {
+
+        const btn2 = document.createElement('button');
+        btn2.innerHTML = previousPage;
+        btn2.addEventListener('click', () => {
+            parentNode.innerHTML = "";
+            getProducts(previousPage)
+        });
+        pagination.appendChild(btn2);
+
+    }
+    const btn1 = document.createElement('button');
+    btn1.innerHTML = `<h3>${currentPage}</h3>`;
+    btn1.addEventListener('click', () => {
+        parentNode.innerHTML = "";
+
+        getProducts(currentPage)
+    });
+    pagination.appendChild(btn1);
+
+    if (hasNextPage) {
+
+        const btn3 = document.createElement('button');
+        btn3.innerHTML = nextPage;
+        btn3.addEventListener('click', () => {
+            parentNode.innerHTML = "";
+            getProducts(nextPage)
+        });
+        pagination.appendChild(btn3);
+    }
+}
+
+function getProducts(page){
+    var g = axios.get(`http://localhost:4000/expense/get-expense?page=${page}`,{headers:{ 'Authorization':token}})
+        .then((response) => {
+
+            console.log('getresponse',response);
+            for (let i = 0; i < response.data.expense.length; i++) {
+
+                console.log(response)
+                seeOnScreen(response.data.expense[i]);
+            }
+            showPagination(response.data);
+        }).catch(() => {
+            console.log('somthing went wrong in get');
+        })
 }
