@@ -12,10 +12,10 @@ function login(event) {
         .then(result => {
             console.log('login routes is working well')
             alert('Login successfully')
-            console.log('response from post login >>>>>', result.data.result[0].ispremiumuser)
+           /console.log('response from post login >>>>>', result)
             localStorage.setItem('token', result.data.token);
             //console.log('login status>>>', result.response.status);
-            if (result.data.result[0].ispremiumuser) {
+            if (result.data.result.isPremium) {
                 window.location.href='C:/Users/jaykp/Desktop/Expense_Tracker_FrontEnd/premium.html'
             }
             else {

@@ -13,6 +13,7 @@
         <input type="text" id="description">
         <label>Category:</label>
         <input list="categorys" id="category">
+        <input type="hidden" name="expenseId" id="expenseId" value="">
         <datalist id="categorys">
             <option value="Food">
             <option value="Fuel">
@@ -25,6 +26,12 @@
     <br>
     <div>
         <button class="compare">Compare</button>
+        <button id="downloadexpense">Download File</button>
+
+        <ul id="user">
+
+        </ul>
+        <ul id="expense"></ul>
         <div class="toggle-container">
             <input type="checkbox" id="toggle" name="toggle" />
             <label for="toggle">Dark Mode</label>
@@ -34,6 +41,8 @@
     <ul id="list">
 
     </ul>
+    <div class="pagination" style="text-align: center;">
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
     <script src="premium.js">
        

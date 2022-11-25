@@ -10,6 +10,7 @@
         <input type="text" id="description">
         <label>Category:</label>
         <input list="categorys" id="category">
+        <input type="hidden" name="expenseId" id="expenseId" value="">
         <datalist id="categorys">
             <option value="Food">
             <option value="Fuel">
@@ -22,9 +23,15 @@
     <ul id="list">
 
     </ul>
-    <div class="pagination" style="text-align: center;"></div>
+<!-- <form onsubmit="localStorage.setItem('items',document.getElementById(items).value)">
+    <label for="items">Number of expense you want on screen</label>
+        <input type="number" name="items" id="items">
+        <button type="submit">show</button>
+    </form> -->
+        <div class="pagination" style="text-align: center;">
+    </div>
     <button id="rzp-button1">Buy Premium</button>
-    <button id="downloadexpense">Download File</button>
+    <button id="downloadexpense" disabled>Download File</button>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
     <script src="expense.js">
